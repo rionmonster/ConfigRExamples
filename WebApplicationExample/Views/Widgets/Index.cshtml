@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebApplicationExample.Models.Widget>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Widgets</title>
+</head>
+<body>
+    <!-- Loop through each Widget -->
+    @foreach(var widget in Model)
+    {
+        <h4>@widget.Description (@widget.SerialNumber)</h4>
+ 
+        if(widget.Parts.Any())
+        {
+             <b>Parts</b>
+             <ul>
+             @foreach (var part in widget.Parts)
+             {
+                   <li>@part.Description (@(part.IsFunctioning ? "Working" : "Requires Repairs"))</li>
+             }
+             </ul>
+       }
+       else
+       {
+            <b>No Parts Available</b>
+       }
+   }
+</body>
+</html>
